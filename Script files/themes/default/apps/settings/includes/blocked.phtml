@@ -1,0 +1,64 @@
+<div class="timeline-container">
+	<div class="timeline-header" data-el="tl-header">
+		<div class="lp">
+			<div class="nav-link-holder">
+				<a href="<?php echo cl_link("settings/blocked"); ?>" data-spa="true">
+					<?php echo cl_translate("Blocked users"); ?>
+				</a>
+			</div>
+		</div>
+		<div class="cp">
+			<a href="<?php echo cl_link("home"); ?>">
+				<img src="{%config site_logo%}" alt="Logo">
+			</a>
+		</div>
+		<div class="rp">
+			<div class="nav-link-holder">
+				<span class="go-back" onclick="SMColibri.go_back();">
+					<?php echo cl_ikon('arrow-left'); ?>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="main-profile-settings-container">
+		<div class="profile-settings-nav">
+			<div class="nav-list-itemset-title">
+				<h4>
+					<?php echo cl_translate("Manage blocked users"); ?>
+				</h4>
+			</div>
+		</div>
+		<div class="profile-settings-content">
+			<?php if (not_empty($cl["blocked_users"])): ?>
+                <div class="accoun-blocks-ls">
+                    <?php foreach ($cl["blocked_users"] as $li): ?>
+                        <div class="accoun-blocks-list-item">
+                            <div class="avatar">
+                                <img src="<?php echo($li['avatar']); ?>" alt="Avatar">
+                            </div>
+                            <div class="user-info-holder">
+                                <div class="user-info-holder-inner">
+                                    <div class="lp">
+                                        <h4>
+                                            <span class="user-name-holder <?php if ($li['verified'] == '1') {echo('verified-badge');} ?>">
+                                                <?php echo $li['name']; ?>
+                                            </span>
+                                        </h4>
+                                        <a href="<?php echo($li['url']); ?>">
+                                            <?php echo($li['username']); ?>
+                                        </a>
+                                    </div>
+                                    <div class="rp">
+                                        <button onclick="SMColibri.block(this);" class="btn btn-custom md main-outline" data-action="unblock" data-id="<?php echo($li['profile_id']); ?>">
+                                            <?php echo cl_translate("Unblock"); ?>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+		</div>
+	</div>
+</div>
